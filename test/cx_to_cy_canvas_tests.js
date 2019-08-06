@@ -329,4 +329,41 @@ describe("CX to Cytoscape JS Canvas", function() {
     expect(topCtxSpy.fillStyle).to.eql("rgb(0,0,0,1)");
     expect(topCtxSpy.strokeStyle).to.eql("rgb(0,0,0,1)");
   });
+  
+  it("custom shape empty test", function() {
+    let niceCX = {
+      networkAttributes: {
+        elements: [
+          {
+            s: 80,
+            n: "__Annotations",
+            v: [
+              "edgeThickness=1.0|canvas=foreground|fillOpacity=100.0|zoom=1.0|type=org.cytoscape.view.presentation.annotations.ShapeAnnotation|uuid=882fe313-225f-4349-91eb-8a8fe0135d7d|shapeType=CUSTOM|edgeColor=-16777216|edgeOpacity=100.0|name=Shape 1|x=-282.0|width=38.0|y=-217.0|z=0|height=251.0"
+            ],
+            d: "list_of_string"
+          }
+        ]
+      }
+    };
+
+    cx2canvas.drawAnnotationsFromNiceCX(cytoscapeInstance, niceCX);
+
+    resizeFunction();
+
+    /*
+    expect(topCtxSpy.rect.args).to.eql([
+      [
+        "44.088963266363095",
+        "-30.839164241532043",
+        45.46873375131503,
+        116.67183460460876
+      ]
+    ]);
+    expect(topCtxSpy.fill.callCount).to.eql(1);
+    expect(topCtxSpy.stroke.callCount).to.eql(1);
+    expect(topCtxSpy.fillStyle).to.eql("rgb(255,0,51,1)");
+    expect(topCtxSpy.strokeStyle).to.eql("rgb(0,0,0,1)");
+    */
+  });
+  
 });
