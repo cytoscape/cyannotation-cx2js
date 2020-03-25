@@ -665,14 +665,16 @@ class CxToCyCanvas {
             "org.cytoscape.view.presentation.annotations.BoundedTextAnnotation"
           ) {
             //ctx.beginPath();
+            const zoom = annotationMap["zoom"] ? parseFloat(annotationMap["zoom"]) : 1;
+            
             ctx.lineWidth = annotationMap["edgeThickness"];
 
             annotationMap["width"] =
               parseFloat(annotationMap["width"]) /
-              parseFloat(annotationMap["zoom"]);
+              zoom;
             annotationMap["height"] =
               parseFloat(annotationMap["height"]) /
-              parseFloat(annotationMap["zoom"]);
+              zoom;
             if (shapeFunctions[annotationMap["shapeType"]]) {
               ctx.strokeStyle = colorFromInt(
                 annotationMap["edgeColor"],
