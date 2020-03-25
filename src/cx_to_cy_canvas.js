@@ -665,14 +665,16 @@ class CxToCyCanvas {
             "org.cytoscape.view.presentation.annotations.BoundedTextAnnotation"
           ) {
             //ctx.beginPath();
+            const zoom = annotationMap["zoom"] ? parseFloat(annotationMap["zoom"]) : 1;
+            
             ctx.lineWidth = annotationMap["edgeThickness"];
 
             annotationMap["width"] =
               parseFloat(annotationMap["width"]) /
-              parseFloat(annotationMap["zoom"]);
+              zoom;
             annotationMap["height"] =
               parseFloat(annotationMap["height"]) /
-              parseFloat(annotationMap["zoom"]);
+              zoom;
             if (shapeFunctions[annotationMap["shapeType"]]) {
               ctx.strokeStyle = colorFromInt(
                 annotationMap["edgeColor"],
@@ -745,9 +747,9 @@ class CxToCyCanvas {
               parseFloat(annotationMap["y"]) + annotationMap["height"] / 2;
           }
           if (text && textX && textY) {
-            var fontSize =
-              parseFloat(annotationMap["fontSize"]) /
-              parseFloat(annotationMap["zoom"]);
+            const zoom = annotationMap["zoom"] ? parseFloat(annotationMap["zoom"]) : 1;
+            const fontSize =
+              parseFloat(annotationMap["fontSize"]) / zoom;
             var fontFamily;
 
             if (annotationMap["fontFamily"]) {
